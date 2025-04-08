@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   experimental: {
     serverSourceMaps: false,
+    parallelServerBuildTraces: true,
+    parallelServerCompiles: true,
   },
 };
 

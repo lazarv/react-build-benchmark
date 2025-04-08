@@ -12,19 +12,21 @@
     "lint": "next lint",
     "dev:react-server": "react-server",
     "build:react-server": "react-server build",
+    "build:react-server:vercel": "react-server build --adapter '@lazarv/react-server-adapter-vercel'",
     "start:react-server": "react-server start",
     "generate": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=1000 PAGE_COUNT=1000 COMPONENTS_PER_PAGE=100 node generate-benchmark.js",
     "generate:small": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=100 PAGE_COUNT=100 COMPONENTS_PER_PAGE=10 node generate-benchmark.js",
     "generate:tiny": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=10 PAGE_COUNT=10 COMPONENTS_PER_PAGE=3 node generate-benchmark.js",
-    "benchmark:run": "hyperfine --runs 1 'node --run build:turbopack' 'node --run build:react-server'",
+    "benchmark:run": "hyperfine --runs 1 'node --run build:turbopack' 'node --run build:react-server:vercel'",
     "benchmark": "node --run generate && node --run benchmark:run",
     "benchmark:small": "node --run generate:small && node --run benchmark:run",
     "benchmark:tiny": "node --run generate:tiny && node --run benchmark:run"
   },
   "dependencies": {
-    "@lazarv/react-server": "0.0.0-experimental-e1baa3f-20250330-021969bf",
+    "@lazarv/react-server": "^0.0.0-experimental-e1baa3f-20250330-021969bf",
+    "@lazarv/react-server-adapter-vercel": "^0.0.0-experimental-138ef89-20241217-08cf78b6",
     "@vitejs/plugin-react-swc": "^3.8.1",
-    "next": "15.3.0-canary.40"
+    "next": "^15.3.0-canary.43"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
