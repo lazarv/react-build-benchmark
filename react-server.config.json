@@ -1,0 +1,9 @@
+{
+  "root": "app",
+  "layouts": {
+    "include": ["**/layout.tsx"]
+  },
+  "pages": {
+    "include": ["**/page.tsx"]
+  }
+}

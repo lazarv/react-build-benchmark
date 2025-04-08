@@ -2,23 +2,37 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
+    "dev:turbopack": "next dev --turbopack",
+    "build:turbopack": "next build --turbopack",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:react-server": "react-server",
+    "build:react-server": "react-server build",
+    "start:react-server": "react-server start",
+    "generate": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=1000 PAGE_COUNT=1000 COMPONENTS_PER_PAGE=100 node generate-benchmark.js",
+    "generate:small": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=100 PAGE_COUNT=100 COMPONENTS_PER_PAGE=10 node generate-benchmark.js",
+    "generate:tiny": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=10 PAGE_COUNT=10 COMPONENTS_PER_PAGE=3 node generate-benchmark.js",
+    "benchmark:run": "hyperfine --runs 1 'node --run build:turbopack' 'node --run build:react-server'",
+    "benchmark": "node --run generate && node --run benchmark:run",
+    "benchmark:small": "node --run generate:small && node --run benchmark:run",
+    "benchmark:tiny": "node --run generate:tiny && node --run benchmark:run"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.4"
+    "@lazarv/react-server": "0.0.0-experimental-e1baa3f-20250330-021969bf",
+    "@vitejs/plugin-react-swc": "^3.8.1",
+    "next": "15.3.0-canary.40"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
-  }
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@9.15.5+sha512.845196026aab1cc3f098a0474b64dfbab2afe7a1b4e91dd86895d8e4aa32a7a6d03049e2d0ad770bbe4de023a7122fb68c1a1d6e0d033c7076085f9d5d4800d4"
 }
