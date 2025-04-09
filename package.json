@@ -19,8 +19,8 @@
     "generate:tiny": "rm -rf ./app/page-* && rm -rf ./components && COMPONENT_COUNT=10 PAGE_COUNT=10 COMPONENTS_PER_PAGE=3 node generate-benchmark.js",
     "benchmark:run": "hyperfine --runs 1 'node --run build:turbopack' 'node --run build:react-server:vercel'",
     "benchmark": "node --run generate && node --run benchmark:run",
-    "benchmark:small": "node --run generate:small && node --run benchmark:run",
-    "benchmark:tiny": "node --run generate:tiny && node --run benchmark:run"
+    "benchmark:small": "node --run generate:small && node --run benchmark:run -- 'node --run build'",
+    "benchmark:tiny": "node --run generate:tiny && node --run benchmark:run -- 'node --run build'"
   },
   "dependencies": {
     "@lazarv/react-server": "^0.0.0-experimental-e1baa3f-20250330-021969bf",
